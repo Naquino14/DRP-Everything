@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "mOWMg3fMvH4F6D7g9uyfe/JyMgdhQV+Jx7dhWeG6Y4oCvBRbUl1xueuZXvxKNYjIDCgWjRKF71Udy6PHWHk4hg==",
+  "success": true,
+  "projectFilePath": "D:\\CSharp Projects\\DRP-Everything\\DRP Everything\\DRP Everything\\DRP Everything.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\naqui\\.nuget\\packages\\discordrichpresence\\1.0.175\\discordrichpresence.1.0.175.nupkg.sha512",
+    "C:\\Users\\naqui\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\naqui\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\naqui\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\naqui\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "C:\\Users\\naqui\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
