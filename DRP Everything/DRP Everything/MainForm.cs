@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace DRP_Everything
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        FormBacker fb;
+        public MainForm()
         {
             InitializeComponent();
+            fb = new FormBacker();
         }
 
     }
