@@ -55,6 +55,8 @@ namespace DRP_Everything
             this.GithubButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.StatusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // AppIdTextBox
@@ -64,6 +66,7 @@ namespace DRP_Everything
             this.AppIdTextBox.Name = "AppIdTextBox";
             this.AppIdTextBox.Size = new System.Drawing.Size(179, 27);
             this.AppIdTextBox.TabIndex = 0;
+            this.AppIdTextBox.TextChanged += new System.EventHandler(this.AppIdTextBox_TextChanged);
             // 
             // appIdLabel
             // 
@@ -263,6 +266,7 @@ namespace DRP_Everything
             this.StartButton.TabIndex = 20;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = false;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // StopButton
             // 
@@ -314,12 +318,36 @@ namespace DRP_Everything
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Simplex_IV25", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(420, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 41);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Status:";
+            // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Font = new System.Drawing.Font("Simplex_IV25", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.StatusLabel.Location = new System.Drawing.Point(580, 67);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(249, 41);
+            this.StatusLabel.TabIndex = 28;
+            this.StatusLabel.Text = "Disconnected";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.ClientSize = new System.Drawing.Size(861, 452);
+            this.Controls.Add(this.StatusLabel);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.GithubButton);
@@ -380,6 +408,8 @@ namespace DRP_Everything
         private System.Windows.Forms.Button GithubButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button UpdateButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label StatusLabel;
     }
 }
 

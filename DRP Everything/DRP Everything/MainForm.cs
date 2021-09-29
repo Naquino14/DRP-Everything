@@ -16,8 +16,16 @@ namespace DRP_Everything
         public MainForm()
         {
             InitializeComponent();
-            fb = new FormBacker();
+            fb = new FormBacker(
+                AppIdTextBox, 
+                StartButton,
+                StatusLabel,
+                StopButton
+                );
         }
 
+        private void AppIdTextBox_TextChanged(object sender, EventArgs e) => fb.OnAPPIDTBChanged();
+
+        private void StartButton_Click(object sender, EventArgs e) => fb.Start();
     }
 }
