@@ -20,12 +20,15 @@ namespace DRP_Everything
                 AppIdTextBox, 
                 StartButton,
                 StatusLabel,
-                StopButton
+                StopButton,
+                UpdateButton
                 );
         }
 
         private void AppIdTextBox_TextChanged(object sender, EventArgs e) => fb.OnAPPIDTBChanged();
 
-        private void StartButton_Click(object sender, EventArgs e) => fb.Start();
+        private void StartButton_Click(object sender, EventArgs e) => fb.StartOnClick();
+
+        private void StopButton_Click(object sender, EventArgs e) => fb.StopOnClick();
     }
 }

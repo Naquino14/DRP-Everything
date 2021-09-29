@@ -57,6 +57,9 @@ namespace DRP_Everything
             this.UpdateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.StatusLabel = new System.Windows.Forms.Label();
+            this.LoadButton = new System.Windows.Forms.Button();
+            this.ShortcutGenButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // AppIdTextBox
@@ -104,9 +107,9 @@ namespace DRP_Everything
             this.drpDetailLabel.ForeColor = System.Drawing.SystemColors.Control;
             this.drpDetailLabel.Location = new System.Drawing.Point(198, 144);
             this.drpDetailLabel.Name = "drpDetailLabel";
-            this.drpDetailLabel.Size = new System.Drawing.Size(95, 21);
+            this.drpDetailLabel.Size = new System.Drawing.Size(108, 21);
             this.drpDetailLabel.TabIndex = 4;
-            this.drpDetailLabel.Text = "DRP Title";
+            this.drpDetailLabel.Text = "DRP Detail";
             // 
             // DrpStateTextbox
             // 
@@ -280,13 +283,14 @@ namespace DRP_Everything
             this.StopButton.TabIndex = 21;
             this.StopButton.Text = "Stop";
             this.StopButton.UseVisualStyleBackColor = false;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // GithubButton
             // 
             this.GithubButton.BackColor = System.Drawing.SystemColors.Control;
             this.GithubButton.Font = new System.Drawing.Font("Simplex_IV25", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.GithubButton.ForeColor = System.Drawing.Color.MediumSlateBlue;
-            this.GithubButton.Location = new System.Drawing.Point(13, 411);
+            this.GithubButton.Location = new System.Drawing.Point(12, 446);
             this.GithubButton.Name = "GithubButton";
             this.GithubButton.Size = new System.Drawing.Size(94, 29);
             this.GithubButton.TabIndex = 24;
@@ -296,11 +300,11 @@ namespace DRP_Everything
             // SaveButton
             // 
             this.SaveButton.BackColor = System.Drawing.SystemColors.Control;
-            this.SaveButton.Font = new System.Drawing.Font("Simplex_IV25", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.SaveButton.Font = new System.Drawing.Font("Simplex_IV25", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SaveButton.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.SaveButton.Location = new System.Drawing.Point(613, 336);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(175, 82);
+            this.SaveButton.Size = new System.Drawing.Size(175, 41);
             this.SaveButton.TabIndex = 26;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = false;
@@ -340,12 +344,51 @@ namespace DRP_Everything
             this.StatusLabel.TabIndex = 28;
             this.StatusLabel.Text = "Disconnected";
             // 
+            // LoadButton
+            // 
+            this.LoadButton.BackColor = System.Drawing.SystemColors.Control;
+            this.LoadButton.Font = new System.Drawing.Font("Simplex_IV25", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LoadButton.ForeColor = System.Drawing.Color.MediumSlateBlue;
+            this.LoadButton.Location = new System.Drawing.Point(613, 377);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(175, 41);
+            this.LoadButton.TabIndex = 29;
+            this.LoadButton.Text = "Load Profile";
+            this.LoadButton.UseVisualStyleBackColor = false;
+            // 
+            // ShortcutGenButton
+            // 
+            this.ShortcutGenButton.BackColor = System.Drawing.SystemColors.Control;
+            this.ShortcutGenButton.Font = new System.Drawing.Font("Simplex_IV25", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ShortcutGenButton.ForeColor = System.Drawing.Color.MediumSlateBlue;
+            this.ShortcutGenButton.Location = new System.Drawing.Point(420, 434);
+            this.ShortcutGenButton.Name = "ShortcutGenButton";
+            this.ShortcutGenButton.Size = new System.Drawing.Size(368, 41);
+            this.ShortcutGenButton.TabIndex = 30;
+            this.ShortcutGenButton.Text = "Shortcut Generator";
+            this.ShortcutGenButton.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Simplex_IV25", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(112, 402);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(247, 76);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Warning: connecting and \r\ndisconnectig multiple \r\ntimes in succession will \r\ntrig" +
+    "ger a discord ratelimit.";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.ClientSize = new System.Drawing.Size(861, 452);
+            this.ClientSize = new System.Drawing.Size(861, 487);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.ShortcutGenButton);
+            this.Controls.Add(this.LoadButton);
             this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SaveButton);
@@ -410,6 +453,9 @@ namespace DRP_Everything
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label StatusLabel;
+        private System.Windows.Forms.Button LoadButton;
+        private System.Windows.Forms.Button ShortcutGenButton;
+        private System.Windows.Forms.Label label2;
     }
 }
 

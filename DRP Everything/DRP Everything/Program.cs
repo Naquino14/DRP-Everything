@@ -17,7 +17,9 @@ namespace DRP_Everything
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            MainForm form = new MainForm();
+            form.AutoSize = false;
+            Application.Run();
         }
     }
 }
