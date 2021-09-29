@@ -1,2 +1,2 @@
 # DRP-Everything
-A simple and flexible winforms app to create rich presences for any app on your pc.
+A simple and flexible windows presentation foundation app to create rich presences for any app on your pc.
