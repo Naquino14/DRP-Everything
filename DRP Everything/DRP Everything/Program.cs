@@ -19,7 +19,7 @@ namespace DRP_Everything
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm form = new MainForm();
             form.AutoSize = false;
-            Application.Run();
+            Application.Run(form);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,16 @@ namespace DRP_Everything
                 StartButton,
                 StatusLabel,
                 StopButton,
-                UpdateButton
+                UpdateButton,
+                UseTimestampCheckbox,
+                OverrideTimestampCheckbox,
+                DrpDetailTextbox,
+                DrpStateTextbox,
+                LargeImageKeyTextbox,
+                LargeImageTextTextBox,
+                SmallImageKeyTextBox,
+                SmallImageTextTextbox,
+                OverrideTimeDTP
                 );
         }
 
@@ -30,5 +40,19 @@ namespace DRP_Everything
         private void StartButton_Click(object sender, EventArgs e) => fb.StartOnClick();
 
         private void StopButton_Click(object sender, EventArgs e) => fb.StopOnClick();
+
+        private void GithubButton_Click(object sender, EventArgs e) => Process.Start("https://github.com/naquino14/DRP-Everything");
+
+        private void UseTimestampCheckbox_CheckedChanged(object sender, EventArgs e) => fb.UseTimestampOnUpdate();
+
+        private void OverrideTimestampCheckbox_CheckedChanged(object sender, EventArgs e) => fb.OverrideTimestampOnUpdate();
+
+        private void UpdateButton_Click(object sender, EventArgs e) => fb.Update();
+
+        private void SaveButton_Click(object sender, EventArgs e) => fb.SaveOnClick();
+
+        private void LoadButton_Click(object sender, EventArgs e) => fb.LoadOnClick();
+
+        private void ShortcutGenButton_Click(object sender, EventArgs e) => fb.CreateShortcutOnClick();
     }
 }

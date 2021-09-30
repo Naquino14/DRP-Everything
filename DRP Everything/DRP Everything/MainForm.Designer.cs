@@ -47,8 +47,7 @@ namespace DRP_Everything
             this.S = new System.Windows.Forms.Label();
             this.SmallImageKeyTextBox = new System.Windows.Forms.TextBox();
             this.UseTimestampCheckbox = new System.Windows.Forms.CheckBox();
-            this.UnixTimestampTextbox = new System.Windows.Forms.TextBox();
-            this.OverrideTimestamp = new System.Windows.Forms.CheckBox();
+            this.OverrideTimestampCheckbox = new System.Windows.Forms.CheckBox();
             this.OverrideTimestampLabel = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
             this.StopButton = new System.Windows.Forms.Button();
@@ -60,6 +59,7 @@ namespace DRP_Everything
             this.LoadButton = new System.Windows.Forms.Button();
             this.ShortcutGenButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.OverrideTimeDTP = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // AppIdTextBox
@@ -223,35 +223,28 @@ namespace DRP_Everything
             this.UseTimestampCheckbox.TabIndex = 16;
             this.UseTimestampCheckbox.Text = "Use Timestamp";
             this.UseTimestampCheckbox.UseVisualStyleBackColor = true;
+            this.UseTimestampCheckbox.CheckedChanged += new System.EventHandler(this.UseTimestampCheckbox_CheckedChanged);
             // 
-            // UnixTimestampTextbox
+            // OverrideTimestampCheckbox
             // 
-            this.UnixTimestampTextbox.Enabled = false;
-            this.UnixTimestampTextbox.Location = new System.Drawing.Point(420, 174);
-            this.UnixTimestampTextbox.Name = "UnixTimestampTextbox";
-            this.UnixTimestampTextbox.Size = new System.Drawing.Size(175, 27);
-            this.UnixTimestampTextbox.TabIndex = 17;
-            this.UnixTimestampTextbox.Text = "1507665886";
-            // 
-            // OverrideTimestamp
-            // 
-            this.OverrideTimestamp.AutoSize = true;
-            this.OverrideTimestamp.Enabled = false;
-            this.OverrideTimestamp.Font = new System.Drawing.Font("Simplex_IV25", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.OverrideTimestamp.ForeColor = System.Drawing.SystemColors.Control;
-            this.OverrideTimestamp.Location = new System.Drawing.Point(613, 140);
-            this.OverrideTimestamp.Name = "OverrideTimestamp";
-            this.OverrideTimestamp.Size = new System.Drawing.Size(216, 25);
-            this.OverrideTimestamp.TabIndex = 18;
-            this.OverrideTimestamp.Text = "Override Timestamp";
-            this.OverrideTimestamp.UseVisualStyleBackColor = true;
+            this.OverrideTimestampCheckbox.AutoSize = true;
+            this.OverrideTimestampCheckbox.Enabled = false;
+            this.OverrideTimestampCheckbox.Font = new System.Drawing.Font("Simplex_IV25", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.OverrideTimestampCheckbox.ForeColor = System.Drawing.SystemColors.Control;
+            this.OverrideTimestampCheckbox.Location = new System.Drawing.Point(613, 140);
+            this.OverrideTimestampCheckbox.Name = "OverrideTimestampCheckbox";
+            this.OverrideTimestampCheckbox.Size = new System.Drawing.Size(216, 25);
+            this.OverrideTimestampCheckbox.TabIndex = 18;
+            this.OverrideTimestampCheckbox.Text = "Override Timestamp";
+            this.OverrideTimestampCheckbox.UseVisualStyleBackColor = true;
+            this.OverrideTimestampCheckbox.CheckedChanged += new System.EventHandler(this.OverrideTimestampCheckbox_CheckedChanged);
             // 
             // OverrideTimestampLabel
             // 
             this.OverrideTimestampLabel.AutoSize = true;
             this.OverrideTimestampLabel.Font = new System.Drawing.Font("Simplex_IV25", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.OverrideTimestampLabel.ForeColor = System.Drawing.SystemColors.Control;
-            this.OverrideTimestampLabel.Location = new System.Drawing.Point(613, 180);
+            this.OverrideTimestampLabel.Location = new System.Drawing.Point(635, 178);
             this.OverrideTimestampLabel.Name = "OverrideTimestampLabel";
             this.OverrideTimestampLabel.Size = new System.Drawing.Size(194, 21);
             this.OverrideTimestampLabel.TabIndex = 19;
@@ -296,6 +289,7 @@ namespace DRP_Everything
             this.GithubButton.TabIndex = 24;
             this.GithubButton.Text = "GitHub";
             this.GithubButton.UseVisualStyleBackColor = false;
+            this.GithubButton.Click += new System.EventHandler(this.GithubButton_Click);
             // 
             // SaveButton
             // 
@@ -308,6 +302,7 @@ namespace DRP_Everything
             this.SaveButton.TabIndex = 26;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = false;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // UpdateButton
             // 
@@ -321,6 +316,7 @@ namespace DRP_Everything
             this.UpdateButton.TabIndex = 25;
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = false;
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // label1
             // 
@@ -355,6 +351,7 @@ namespace DRP_Everything
             this.LoadButton.TabIndex = 29;
             this.LoadButton.Text = "Load Profile";
             this.LoadButton.UseVisualStyleBackColor = false;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // ShortcutGenButton
             // 
@@ -367,6 +364,7 @@ namespace DRP_Everything
             this.ShortcutGenButton.TabIndex = 30;
             this.ShortcutGenButton.Text = "Shortcut Generator";
             this.ShortcutGenButton.UseVisualStyleBackColor = false;
+            this.ShortcutGenButton.Click += new System.EventHandler(this.ShortcutGenButton_Click);
             // 
             // label2
             // 
@@ -380,12 +378,23 @@ namespace DRP_Everything
             this.label2.Text = "Warning: connecting and \r\ndisconnectig multiple \r\ntimes in succession will \r\ntrig" +
     "ger a discord ratelimit.";
             // 
+            // OverrideTimeDTP
+            // 
+            this.OverrideTimeDTP.CalendarFont = new System.Drawing.Font("Simplex_IV25", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OverrideTimeDTP.Enabled = false;
+            this.OverrideTimeDTP.Font = new System.Drawing.Font("Simplex_IV25", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OverrideTimeDTP.Location = new System.Drawing.Point(420, 174);
+            this.OverrideTimeDTP.Name = "OverrideTimeDTP";
+            this.OverrideTimeDTP.Size = new System.Drawing.Size(187, 28);
+            this.OverrideTimeDTP.TabIndex = 32;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumSlateBlue;
             this.ClientSize = new System.Drawing.Size(861, 487);
+            this.Controls.Add(this.OverrideTimeDTP);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ShortcutGenButton);
             this.Controls.Add(this.LoadButton);
@@ -397,8 +406,7 @@ namespace DRP_Everything
             this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.OverrideTimestampLabel);
-            this.Controls.Add(this.OverrideTimestamp);
-            this.Controls.Add(this.UnixTimestampTextbox);
+            this.Controls.Add(this.OverrideTimestampCheckbox);
             this.Controls.Add(this.UseTimestampCheckbox);
             this.Controls.Add(this.SmallImageTextLabel);
             this.Controls.Add(this.SmallImageTextTextbox);
@@ -443,8 +451,7 @@ namespace DRP_Everything
         private System.Windows.Forms.Label S;
         private System.Windows.Forms.TextBox SmallImageKeyTextBox;
         private System.Windows.Forms.CheckBox UseTimestampCheckbox;
-        private System.Windows.Forms.TextBox UnixTimestampTextbox;
-        private System.Windows.Forms.CheckBox OverrideTimestamp;
+        private System.Windows.Forms.CheckBox OverrideTimestampCheckbox;
         private System.Windows.Forms.Label OverrideTimestampLabel;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button StopButton;
@@ -456,6 +463,7 @@ namespace DRP_Everything
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.Button ShortcutGenButton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker OverrideTimeDTP;
     }
 }
 
