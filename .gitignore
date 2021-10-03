@@ -1,2 +1,5 @@
 
-DRP Everything/DRP Everything/bin/Release/net5.0-windows/publish/64 bit/DRP Everything.exe
+DRP Everything/DRP Everything/obj
+DRP Everything/DRP Everything/bin/
+*.dll
+*.exe
