@@ -12,14 +12,35 @@ namespace DRP_Everything
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args) // args[0] is config, args[1] is app path
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm form = new MainForm();
-            form.AutoSize = false;
-            Application.Run(form);
+            if (args.Length == 0)
+            {
+                InitializationInformation info = new InitializationInformation();
+                info.useArgs = false;
+
+                MainForm form = new MainForm(info);
+                form.AutoSize = false;
+                //form.ShowInTaskbar = false;
+                Application.Run(form);
+            }
+            else
+            {
+                InitializationInformation info = new InitializationInformation();
+                info.useArgs = true;
+                info.configPath = args[0];
+                info.executablePath = args[1];
+
+                MainForm form = new MainForm(info);
+                form.AutoSize = false;
+                //form.ShowInTaskbar = false;
+                form.WindowState = FormWindowState.Minimized;
+                Application.Run(form);
+            }
+            
         }
     }
 }

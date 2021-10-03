@@ -1,0 +1,23 @@
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\DRP Everything.exe
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\DRP Everything.deps.json
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\DRP Everything.runtimeconfig.json
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\DRP Everything.runtimeconfig.dev.json
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\DRP Everything.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\ref\DRP Everything.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\DRP Everything.pdb
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\DiscordRPC.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\bin\Release\net5.0-windows\Newtonsoft.Json.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\Interop.IWshRuntimeLibrary.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.csproj.ResolveComReference.cache
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP_Everything.MainForm.resources
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP_Everything.Properties.Resources.resources
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.csproj.GenerateResource.cache
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.GeneratedMSBuildEditorConfig.editorconfig
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.AssemblyInfoInputs.cache
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.AssemblyInfo.cs
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.csproj.CoreCompileInputs.cache
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.csproj.CopyComplete
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\ref\DRP Everything.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.pdb
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Release\net5.0-windows\DRP Everything.genruntimeconfig.cache

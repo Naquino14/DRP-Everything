@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Diagnostics;
+
+using IWshRuntimeLibrary;
 
 using DiscordRPC;
 using DiscordRPC.Message;
@@ -12,6 +15,7 @@ namespace DRP_Everything
         OpenFileDialog ofd;
 
         SaveData saveData;
+        InitializationInformation info;
 
         string appId;
         DiscordRpcClient client;
@@ -42,13 +46,18 @@ namespace DRP_Everything
 
         DateTimePicker overrideTimeDTP;
 
+        Process shortcutProcess;
+
         #region DRP Update Properties
 
         DateTime timeStamp;
 
+        readonly string filter = "DRP Everything Config (*.drpec)|*.drpec";
+
         #endregion
 
         public FormBacker(
+            InitializationInformation info,
             TextBox appIdTb,
             System.Windows.Forms.Button startButton,
             Label connectionStatusLabel,
@@ -64,6 +73,7 @@ namespace DRP_Everything
             TextBox smallImageKeyTb,
             DateTimePicker overrideTimeDTP
             ) {
+            this.info = info;
             this.appIdTb = appIdTb;
             this.startButton = startButton;
             this.connectionStatusLabel = connectionStatusLabel;
@@ -83,6 +93,15 @@ namespace DRP_Everything
             ofd = new OpenFileDialog();
 
             saveData = new SaveData();
+
+            // check for shortcut
+            if (this.info.useArgs == true)
+            {
+                saveData = new DataSerializer().Load(info.configPath);
+                MessageBox.Show(info.executablePath);
+                shortcutProcess = Process.Start(info.executablePath);
+                shortcutProcess.Exited += new EventHandler(delegate { OnAttatchedApplicationClose(); });
+            }
         }
 
         public void StartOnClick()
@@ -144,6 +163,15 @@ namespace DRP_Everything
 
         public void SaveOnClick()
         {
+            PrepareData();
+            string path;
+            sfd.Filter = filter;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            { path = sfd.FileName; new DataSerializer().SaveData(saveData, path); }
+        }
+
+        private void PrepareData()
+        {
             saveData.appId = appIdTb.Text;
             saveData.state = stateTb.Text;
             saveData.detail = detailTb.Text;
@@ -162,22 +190,72 @@ namespace DRP_Everything
                 else
                     saveData.timeStamp = DateTime.Now;
             }
-
-            string path;
-            sfd.Filter = "DRP Everything Config (*.drpec)|*.drpec";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            { path = sfd.FileName; new DataSerializer().SaveData(saveData, path); }
         }
 
         public void LoadOnClick()
         {
+            string path;
+            ofd.Filter = filter;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            { path = ofd.FileName; saveData = new DataSerializer().Load(path); }
 
+            Load();
         }
 
+        private void Load()
+        {
+            #pragma warning disable IDE0003
+            appIdTb.Invoke(new MethodInvoker(delegate { appIdTb.Text = this.saveData.appId; }));
+            stateTb.Invoke(new MethodInvoker(delegate { stateTb.Text = this.saveData.state; }));
+            detailTb.Invoke(new MethodInvoker(delegate { detailTb.Text = this.saveData.detail; }));
+            largeImageKeyTb.Invoke(new MethodInvoker(delegate { largeImageKeyTb.Text = this.saveData.largeImageKey; }));
+            largeImageTextTb.Invoke(new MethodInvoker(delegate { largeImageTextTb.Text = this.saveData.largeImageText; }));
+            smallImageKeyTb.Invoke(new MethodInvoker(delegate { smallImageKeyTb.Text = this.saveData.smallImageText; }));
+            smallImageTextTb.Invoke(new MethodInvoker(delegate { smallImageTextTb.Text = this.saveData.smallImageText; }));
+            useTimestampCb.Invoke(new MethodInvoker(delegate { useTimestampCb.Checked = this.saveData.useTimestamp; }));
+            overrideTimestampCb.Invoke(new MethodInvoker(delegate { overrideTimestampCb.Checked = this.saveData.overrideTimestamp; }));
+            #pragma warning restore IDE0003
+        }
         public void CreateShortcutOnClick()
         {
+            string configPath = null;
+            string execuablePath = null;
+            string shortcutPath = null;
+            DialogResult r = MessageBox.Show("Select a location for the shortcut.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (r == DialogResult.Cancel)
+                return;
+            sfd.Filter = "Windows shortcut files (*.lnk)|*.lnk";
+            if (sfd.ShowDialog() == DialogResult.OK)
+                shortcutPath = sfd.FileName;
+            DialogResult r1 = MessageBox.Show("Select a save location for the current configuration.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (r1 == DialogResult.Cancel)
+                return;
+            sfd.Filter = filter;
+            if (sfd.ShowDialog() == DialogResult.OK)
+                configPath = sfd.FileName;
+            DialogResult r2 = MessageBox.Show("Select executable to run when application is opened.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (r2 == DialogResult.Cancel)
+                return;
+            ofd.Filter = "All files (*.*)|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+                execuablePath = ofd.FileName;
+            PrepareData();
+            new DataSerializer().SaveData(saveData, configPath);
 
+            // get name of application
+            string appName = execuablePath.Split('\\')[execuablePath.Split('\\').Length - 1].Split('.')[0];
+            WshShell wsh = new WshShell();
+
+            IWshShortcut shortcut = (IWshShortcut)wsh.CreateShortcut(shortcutPath);
+            shortcut.Arguments = $"\"{configPath}\" \"{execuablePath}\"";
+            shortcut.TargetPath = $@"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}\DRP Everything.exe";
+            shortcut.Description = $"Start DRP Everything with {appName}";
+            shortcut.IconLocation = $@"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}\icon.ico";
+            shortcut.Save();
+            MessageBox.Show($"Success! Created shortcut for {appName}", "Shortcut Created.", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void OnAttatchedApplicationClose() { StopOnClick(); OnClose(); Application.Exit(); }
 
         public void OnClose() => client.Dispose();
 
@@ -239,6 +317,16 @@ namespace DRP_Everything
             OnClose();
             initialized = false;
             allowInitialize = true;
+        }
+
+        public void OnFormReady()
+        {
+            if (info.useArgs)
+            {
+                Load();
+                StartOnClick();
+                Update();
+            }
         }
 
         #endregion

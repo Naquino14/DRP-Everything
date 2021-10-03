@@ -20,3 +20,5 @@ D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Debug\net5.0
 D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Debug\net5.0-windows\DRP Everything.genruntimeconfig.cache
 D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Debug\net5.0-windows\DRP Everything.csproj.AssemblyReference.cache
 D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Debug\net5.0-windows\DRP_Everything.Properties.Resources.resources
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Debug\net5.0-windows\Interop.IWshRuntimeLibrary.dll
+D:\CSharp Projects\DRP-Everything\DRP Everything\DRP Everything\obj\Debug\net5.0-windows\DRP Everything.csproj.ResolveComReference.cache

@@ -16,7 +16,7 @@ namespace DRP_Everything
             {
                 if (!File.Exists(path))
                 {
-                    MessageBox.Show("Error!", $"File at path {path} could nto be found or does not exist", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"File at path {path} could not be found or does not exist", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
                 using (FileStream fs = new FileStream(path, FileMode.Open))
@@ -27,7 +27,7 @@ namespace DRP_Everything
                 return result;
             } catch (Exception ex)
             {
-                MessageBox.Show("Error!", $"Failed to load save data. {ex.ToString()}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to load save data. {ex.ToString()}", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }

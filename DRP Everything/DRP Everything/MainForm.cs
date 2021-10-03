@@ -14,10 +14,11 @@ namespace DRP_Everything
     public partial class MainForm : Form
     {
         FormBacker fb;
-        public MainForm()
+        public MainForm(InitializationInformation info)
         {
             InitializeComponent();
             fb = new FormBacker(
+                info,
                 AppIdTextBox, 
                 StartButton,
                 StatusLabel,
@@ -27,12 +28,13 @@ namespace DRP_Everything
                 OverrideTimestampCheckbox,
                 DrpDetailTextbox,
                 DrpStateTextbox,
-                LargeImageKeyTextbox,
                 LargeImageTextTextBox,
-                SmallImageKeyTextBox,
+                LargeImageKeyTextbox,
                 SmallImageTextTextbox,
+                SmallImageKeyTextBox,
                 OverrideTimeDTP
                 );
+                this.Shown += new EventHandler(delegate { fb.OnFormReady(); });
         }
 
         private void AppIdTextBox_TextChanged(object sender, EventArgs e) => fb.OnAPPIDTBChanged();
