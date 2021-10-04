@@ -1,4 +1,5 @@
-﻿using System;
+﻿// ver 1.0.0
+using System;
 using System.Windows.Forms;
 using System.Diagnostics;
 
@@ -98,7 +99,6 @@ namespace DRP_Everything
             if (this.info.useArgs == true)
             {
                 saveData = new DataSerializer().Load(info.configPath);
-                MessageBox.Show(info.executablePath);
                 shortcutProcess = Process.Start(info.executablePath);
                 shortcutProcess.Exited += new EventHandler(delegate { OnAttatchedApplicationClose(); });
             }
@@ -128,6 +128,8 @@ namespace DRP_Everything
             if (!initialized)
             { MessageBox.Show("Client is not initialized!", "Not Initialized!", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
             client.Deinitialize();
+            // onDisconnect doesnt fire automatically so the event is prob not being triggered or somet
+            OnConnectionClosed(null, null);
         }
 
         public void OnAPPIDTBChanged()
@@ -152,7 +154,7 @@ namespace DRP_Everything
             client.UpdateLargeAsset(largeImageKeyTb.Text, largeImageTextTb.Text);
             client.UpdateSmallAsset(smallImageKeyTb.Text, smallImageTextTb.Text);
 
-            if (useTimestamp)
+            if (useTimestamp) // knon bug: for some reason the default time starts at 4 hours. i think the override time isnt working either.
             {
                 if (overrideTimestamp)
                     client.UpdateStartTime(overrideTimeDTP.Value);

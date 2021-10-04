@@ -3,3 +3,7 @@ DRP Everything/DRP Everything/obj
 DRP Everything/DRP Everything/bin/
 *.dll
 *.exe
+DRP Everything/.vs/
+*.v2
+*.suo
+DRP Everything/.vs/DRP Everything/v16/.suo
