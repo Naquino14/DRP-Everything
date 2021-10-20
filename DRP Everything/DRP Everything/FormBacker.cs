@@ -7,6 +7,7 @@ using IWshRuntimeLibrary;
 
 using DiscordRPC;
 using DiscordRPC.Message;
+using System.IO;
 
 namespace DRP_Everything
 {
@@ -223,36 +224,46 @@ namespace DRP_Everything
             string configPath = null;
             string execuablePath = null;
             string shortcutPath = null;
-            DialogResult r = MessageBox.Show("Select a location for the shortcut.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            string shortcutIconPath = null;
+            var r = MessageBox.Show("Select a location for the shortcut.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (r == DialogResult.Cancel)
                 return;
             sfd.Filter = "Windows shortcut files (*.lnk)|*.lnk";
             if (sfd.ShowDialog() == DialogResult.OK)
                 shortcutPath = sfd.FileName;
-            DialogResult r1 = MessageBox.Show("Select a save location for the current configuration.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            var r1 = MessageBox.Show("Select a save location for the current configuration.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (r1 == DialogResult.Cancel)
                 return;
             sfd.Filter = filter;
             if (sfd.ShowDialog() == DialogResult.OK)
                 configPath = sfd.FileName;
-            DialogResult r2 = MessageBox.Show("Select executable to run when application is opened.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            var r2 = MessageBox.Show("Select executable to run when application is opened.", "Select a file.", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if (r2 == DialogResult.Cancel)
                 return;
             ofd.Filter = "All files (*.*)|*.*";
             if (ofd.ShowDialog() == DialogResult.OK)
                 execuablePath = ofd.FileName;
+            var r3 = MessageBox.Show("Would you like to specify an icon for the shortcut?", "Set a shortcut icon.", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (r3 == DialogResult.Cancel)
+                return;
+            else if (r3 == DialogResult.Yes)
+            {
+                ofd.Filter = "Icon files (*.ico)|*.ico";
+                ofd.InitialDirectory = Path.GetDirectoryName(ofd.FileName);
+                if (ofd.ShowDialog() == DialogResult.OK)
+                    shortcutIconPath = ofd.FileName;
+            }
             PrepareData();
             new DataSerializer().SaveData(saveData, configPath);
 
             // get name of application
-            string appName = execuablePath.Split('\\')[execuablePath.Split('\\').Length - 1].Split('.')[0];
-            WshShell wsh = new WshShell();
+            var appName = execuablePath.Split('\\')[execuablePath.Split('\\').Length - 1].Split('.')[0];
 
-            IWshShortcut shortcut = (IWshShortcut)wsh.CreateShortcut(shortcutPath);
+            var shortcut = (IWshShortcut)new WshShell().CreateShortcut(shortcutPath);
             shortcut.Arguments = $"\"{configPath}\" \"{execuablePath}\"";
-            shortcut.TargetPath = $@"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}\DRP Everything.exe";
+            shortcut.TargetPath = $@"{Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}\DRP Everything.exe";
             shortcut.Description = $"Start DRP Everything with {appName}";
-            shortcut.IconLocation = $@"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}\icon.ico";
+            shortcut.IconLocation = $@"{shortcutIconPath ??= $@"{Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)}\icon.ico"}";
             shortcut.Save();
             MessageBox.Show($"Success! Created shortcut for {appName}", "Shortcut Created.", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
