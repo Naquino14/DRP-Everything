@@ -26,6 +26,17 @@ namespace DRP_Everything
                 form.AutoSize = false;
                 //form.ShowInTaskbar = false;
                 Application.Run(form);
+            } else if (args.Length == 1)
+            {
+                InitializationInformation info = new InitializationInformation();
+                info.useArgs = true;
+                info.configPath = args[0];
+                info.configOnly = true;
+
+                MainForm form = new MainForm(info);
+                form.AutoSize = false;
+                form.WindowState = FormWindowState.Minimized;
+                Application.Run(form);
             }
             else
             {

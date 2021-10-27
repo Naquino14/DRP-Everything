@@ -100,8 +100,12 @@ namespace DRP_Everything
             if (this.info.useArgs == true)
             {
                 saveData = new DataSerializer().Load(info.configPath);
-                shortcutProcess = Process.Start(info.executablePath);
-                shortcutProcess.Exited += new EventHandler(delegate { OnAttatchedApplicationClose(); });
+                if (!this.info.configOnly)
+                {
+                    shortcutProcess = Process.Start(info.executablePath);
+                    shortcutProcess.EnableRaisingEvents = true;
+                    shortcutProcess.Exited += new EventHandler(delegate { OnAttatchedApplicationClose(); });
+                }
             }
         }
 

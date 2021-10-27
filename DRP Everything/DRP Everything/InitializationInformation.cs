@@ -9,6 +9,7 @@ namespace DRP_Everything
     public class InitializationInformation
     {
         public bool useArgs;
+        public bool configOnly = false;
         public string configPath;
         public string executablePath;
     }
